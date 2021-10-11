@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Header from '../header/Header';
 
 export type MainPageTemplateProps = {
     children?: React.ReactNode;
@@ -8,7 +9,7 @@ export type MainPageTemplateProps = {
 function MainPageTemplate({ children }: MainPageTemplateProps) {
     return (
         <Container>
-            <div>이부분은 헤더가 될 예정입니다</div>
+            <Header />
             {children}
         </Container>
     );

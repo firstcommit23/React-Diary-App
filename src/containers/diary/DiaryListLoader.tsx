@@ -20,11 +20,15 @@ function DiaryListLoader() {
             {data &&
                 data.map((diary) => (
                     <DiaryListItem
-                        key={diary.id}
-                        name={diary.repos_url}
-                        thumbnail={diary.avatar_url}
-                        bio={diary.repos_url}
-                        blog={diary.repos_url}
+                        id={diary.id}
+                        title={diary.title}
+                        content={diary.content}
+                        user_id={diary.user_id}
+                        user_name={diary.user_name}
+                        mood={diary.mood}
+                        weather={diary.weather}
+                        open_yn={diary.open_yn}
+                        diary_date={diary.diary_date}
                     />
                 ))}
         </>

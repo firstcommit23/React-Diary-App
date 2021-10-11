@@ -6,9 +6,7 @@ function* getDiaryListSaga(
     action: ReturnType<typeof getDiaryListAsync.request>
 ) {
     try {
-        console.log('11');
         const diaryList: Diary[] = yield call(getDiaryList);
-        console.log(diaryList);
         yield put(getDiaryListAsync.success(diaryList));
     } catch (e) {
         yield put(getDiaryListAsync.failure(e));
