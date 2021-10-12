@@ -43,11 +43,9 @@ function DiaryListItem({
                     <Title to={`/diary/${id}`}>
                         <h1>{title}</h1>
                     </Title>
-                    <Writer>👶{user_name}</Writer>
-                    <div></div>
-                    <div>{content}</div>
+                    {false && <Writer>👶{user_name}</Writer>}
+                    <Content>{content}</Content>
                 </div>
-                <div>Read more. 2 min read</div>
             </DiaryItemBox>
             <DiaryButtonBox>
                 <div>좋아요</div>
@@ -77,6 +75,8 @@ const DiaryDate = styled.div`
     color: #8c8c8c;
     overflow: hidden;
     padding-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.5rem;
 `;
 
 const DiaryDateSpan = styled.span<{
@@ -108,10 +108,32 @@ const Title = styled(Link)`
     margin-top: 0.08em;
     font-size: 36px;
     font-weight: 700;
-    color: rega(41, 41, 41, 1);
+    padding-bottom: 10px;
+
+    h1 {
+        color: #2a2a2a;
+    }
 `;
 
-const Writer = styled.div``;
-const Content = styled.div``;
-const DiaryButtonBox = styled.div``;
+const Writer = styled.div`
+    padding-bottom: 20px;
+    font-size: 0.87rem;
+`;
+const Content = styled.div`
+    font-size: 1.5rem;
+    padding-bottom: 30px;
+    line-height: 32px;
+    margin-top: 0.86em;
+    letter-spacing: -0.003em;
+    font-size: 21px;
+    word-break: break-word;
+`;
+const DiaryButtonBox = styled.div`
+    display: flex;
+
+    & > div {
+        margin-right: 5px;
+        font-size: 0.85rem;
+    }
+`;
 export default DiaryListItem;

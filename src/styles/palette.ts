@@ -32,6 +32,8 @@ const palette = {
     red7: '#f03e3e',
     red8: '#e03131',
     red9: '#c92a2a',
+    /* green */
+    green0: '#1a8918',
 };
 
 export const buttonColorMap: {
@@ -70,6 +72,12 @@ export const buttonColorMap: {
         background: palette.red5,
         color: 'white',
         hoverBackground: palette.red4,
+    },
+
+    green: {
+        background: palette.green0,
+        color: palette.green0,
+        hoverBackground: palette.green0,
     },
 };
 

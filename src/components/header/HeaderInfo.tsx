@@ -13,7 +13,7 @@ function HeaderInfo({ userName, userId }: HeaderInfoProps) {
     return (
         <Container>
             <Wrapper>
-                <div>👶{userName}</div>
+                <UserName>👶{userName}</UserName>
                 <Button
                     onClick={() => {
                         history.push('/write');
@@ -27,9 +27,10 @@ function HeaderInfo({ userName, userId }: HeaderInfoProps) {
 }
 const Container = styled.div`
     width: 100%;
-    padding-top: 8px;
     display: flex;
     font-size: 20px;
+    justify-self: flex-end;
+    align-items: center;
 `;
 
 const Wrapper = styled.div`
@@ -38,8 +39,13 @@ const Wrapper = styled.div`
     flex-direction: row;
     width: 100%;
     justify-content: flex-end;
+    height: 32px;
+    margin-right: 12px;
+    align-items: center;
+`;
 
-    margin: 20px;
+const UserName = styled.div`
+    margin-right: 12px;
 `;
 
 export default HeaderInfo;

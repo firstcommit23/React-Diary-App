@@ -9,7 +9,7 @@ function HeaderLogo({}: HeaderLogoProps) {
         <Container>
             <Wrapper>
                 <Title href="/">일기장 ✨</Title>
-                <span>당신의 오늘을 기록하세요</span>
+                <span>당신의 오늘을 기록하세요.</span>
             </Wrapper>
         </Container>
     );
@@ -27,6 +27,10 @@ const Wrapper = styled.div`
     margin-top: -32px;
     flex-direction: row;
     width: 100%;
+    span {
+        font-size: 1.2rem;
+        color: rgba(117, 117, 117, 1);
+    }
 `;
 
 const Title = styled.a`

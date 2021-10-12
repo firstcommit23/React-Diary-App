@@ -24,7 +24,7 @@ const MainTemplate = styled.section`
 `;
 
 const ContentsContainer = styled.main`
-    flex 1 0 auto
+    flex: 1 0 auto;
 `;
 const ContentsWrapper = styled.div`
     display: flex;
