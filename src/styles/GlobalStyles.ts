@@ -6,6 +6,11 @@ const GlobalStyle = createGlobalStyle`
 
     * {
         box-sizing: border-box;
+        color: #757575;
+    }
+    a {
+        text-decoration: none;
+        color: #000;
     }
 `;
 export default GlobalStyle;
