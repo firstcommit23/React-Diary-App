@@ -3,6 +3,15 @@ import { DefaultTheme } from 'styled-components';
 export const theme = {
     color: {
         black: '#17181c',
+        while0: '#e0e0e0',
+    },
+    width: {
+        maxWidth: '1192px',
+    },
+    buttonColorMap: {
+        teal: '#111111',
+        gray: 'gray',
+        darkGray: '#eeeeee',
     },
 };
 

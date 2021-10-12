@@ -4,6 +4,9 @@ import { getDiary } from '../firebase';
 export async function getDiaryList() {
     //const response = await axios.get<Diary[]>(`https://api.github.com/users`);
     const response = await getDiary();
+
+    //sort
+    response.sort((a, b) => (a.diary_date > b.diary_date ? -1 : 1));
     return response;
 }
 
@@ -16,7 +19,7 @@ export async function getDiaryDetail(id: string) {
 }
 
 export interface Diary {
-    id: 1;
+    id: number;
     title: string;
     diary_date: string;
     content: string;
