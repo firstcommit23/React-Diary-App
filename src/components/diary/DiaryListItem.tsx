@@ -11,7 +11,7 @@ type DiaryListItemProps = {
     content: string;
     mood: string; //TODO: 이런경우
     weather: string;
-    open_yn: string;
+    open_yn?: string;
     user_id: string;
     user_name: string;
 };

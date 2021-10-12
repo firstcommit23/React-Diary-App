@@ -2,8 +2,15 @@ import { initializeApp } from 'firebase/app';
 import {
     getFirestore,
     collection,
+    addDoc,
     getDocs,
-    Firestore,
+    query,
+    orderBy,
+    limit,
+    setDoc,
+    updateDoc,
+    doc,
+    serverTimestamp,
 } from 'firebase/firestore/lite';
 
 const config = {
@@ -26,4 +33,12 @@ export async function getDiary() {
     const diaryList = diarySnapshop.docs.map((doc) => doc.data());
 
     return diaryList;
+}
+
+export async function setData(colle: string, data: any) {
+    try {
+        await addDoc(collection(getFirestore(), colle), {
+            ...data,
+        });
+    } catch (e) {}
 }
