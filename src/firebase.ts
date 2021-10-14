@@ -3,8 +3,10 @@ import {
     getFirestore,
     collection,
     addDoc,
+    getDoc,
     getDocs,
     query,
+    where,
     orderBy,
     limit,
     setDoc,
@@ -27,15 +29,37 @@ const config = {
 const app = initializeApp(config);
 const db = getFirestore(app);
 
-export async function getDiary() {
-    const diaryCol = collection(db, 'diary');
-    const diarySnapshop = await getDocs(diaryCol);
-    const diaryList = diarySnapshop.docs.map((doc) => doc.data());
+export async function getDocuments(collectionName: string) {
+    // const diaryCol = collection(db, 'diary');
+    // const diarySnapshop = await getDocs(diaryCol);
+    // const diaryList = diarySnapshop.docs.map((doc) => doc.data());
+    const result: any = [];
 
-    return diaryList;
+    const crt = collection(db, collectionName);
+    const snapshot = await getDocs(crt);
+
+    await snapshot.forEach((child) => {
+        let id = child.id;
+        let data = child.data();
+
+        result.push({ id, ...data });
+    });
+
+    return result;
 }
 
-export async function setData(colle: string, data: any) {
+export async function getDocument(collectionName: string, documentId: string) {
+    const docRef = doc(db, collectionName, documentId);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
+        throw new Error('문서 아이디가 유효하지 않습니다.');
+    }
+
+    return docSnap.data();
+}
+
+export async function postDocument(colle: string, data: any) {
     try {
         await addDoc(collection(getFirestore(), colle), {
             ...data,

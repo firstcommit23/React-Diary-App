@@ -49,3 +49,9 @@
 -   git pull 잘못받아서 git reflog, git reset 명령어 사용
 -   git action으로 배포환경 만들어보는 중.
     일단 git branch main을 배포하는 걸로 해보자
+
+## TODO
+
+-   firebase api 가져오는 부분 정리하기
+    컬렉션 목록 가져올때 자동생성되는 id를 도큐먼트리스트안에 넣어서 가져오는 방법. (타입스크립트)
+-   날짜, 입력일자로 정렬해야함. 입력일자를 insert 하도록

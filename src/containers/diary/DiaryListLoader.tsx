@@ -18,7 +18,7 @@ function DiaryListLoader() {
         <>
             {loading && <p style={{ textAlign: 'center' }}>로딩중...</p>}
             {error && <p style={{ textAlign: 'center' }}>에러 발생!...</p>}
-            {data &&
+            {data && data.length > 0 ? (
                 data.map((diary) => (
                     <>
                         <DiaryListItem
@@ -36,7 +36,10 @@ function DiaryListLoader() {
 
                         <DiaryItemDiv />
                     </>
-                ))}
+                ))
+            ) : (
+                <div>등록된 일기가 없습니다. 새롭게 작성해 보시겠어요?</div>
+            )}
         </>
     );
 }

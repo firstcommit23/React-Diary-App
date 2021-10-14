@@ -1,17 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
+import { formatDate, getMoodIcon, getWeatherIcon } from '../../lib/utils';
 
 // TODO: 추후 수정
 type DiaryViwerProps = {
-    id: number;
+    title: string;
+    diary_date: string;
+    content: string;
+    mood: string; //TODO: 이런경우
+    weather: string;
+    open_yn?: string;
     user_id: string;
     user_name: string;
 };
 
-function DiaryViewer({ id, user_id, user_name }: DiaryViwerProps) {
-    return <Container>글 읽자!</Container>;
+function DiaryViewer({
+    title,
+    diary_date,
+    content,
+    mood,
+    weather,
+    open_yn,
+    user_id,
+    user_name,
+}: DiaryViwerProps) {
+    return (
+        <Container>
+            <DiaryItemBox>
+                <div>
+                    <DiaryDate>
+                        <DiaryDateSpan>{formatDate(diary_date)}</DiaryDateSpan>{' '}
+                        <DiaryDateSpan before={true}>
+                            {getMoodIcon(mood)}
+                        </DiaryDateSpan>
+                        <DiaryDateSpan before={true}>
+                            {getWeatherIcon(weather)}
+                        </DiaryDateSpan>
+                    </DiaryDate>
+                    <Title>
+                        <h1>{title}</h1>
+                    </Title>
+                    {false && <Writer>👶{user_name}</Writer>}
+                    <Content>{content}</Content>
+                </div>
+            </DiaryItemBox>
+            <DiaryButtonBox>
+                <div>좋아요</div>
+                <div>삭제</div>
+                <div>수정</div>
+            </DiaryButtonBox>
+        </Container>
+    );
 }
-
 const Container = styled.div`
     width: 100%;
     font-size: 2em;
@@ -31,6 +71,8 @@ const DiaryDate = styled.div`
     color: #8c8c8c;
     overflow: hidden;
     padding-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.5rem;
 `;
 
 const DiaryDateSpan = styled.span<{
@@ -56,16 +98,39 @@ const DiaryDateSpan = styled.span<{
  }} }
 `;
 
-const Title = styled.div`
+const Title = styled.h1`
     letter-spacing: -0.014em;
     line-height: 44px;
     margin-top: 0.08em;
     font-size: 36px;
     font-weight: 700;
-    color: rega(41, 41, 41, 1);
+    padding-bottom: 10px;
+
+    h1 {
+        color: #2a2a2a;
+    }
 `;
 
-const Writer = styled.div``;
-const Content = styled.div``;
-const DiaryButtonBox = styled.div``;
+const Writer = styled.div`
+    padding-bottom: 20px;
+    font-size: 0.87rem;
+`;
+const Content = styled.div`
+    font-size: 1.5rem;
+    padding-bottom: 30px;
+    line-height: 32px;
+    margin-top: 0.86em;
+    letter-spacing: -0.003em;
+    font-size: 21px;
+    word-break: break-word;
+`;
+const DiaryButtonBox = styled.div`
+    display: flex;
+
+    & > div {
+        margin-right: 5px;
+        font-size: 0.85rem;
+    }
+`;
+
 export default DiaryViewer;

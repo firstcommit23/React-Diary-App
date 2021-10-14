@@ -10,4 +10,9 @@ export type DiaryState = {
         error: Error | null;
         data: Diary[] | null;
     };
+    diary: {
+        loading: boolean;
+        error: Error | null;
+        data: Diary | null;
+    };
 };

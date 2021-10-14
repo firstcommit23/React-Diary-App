@@ -5,7 +5,7 @@ import { formatDate, getMoodIcon, getWeatherIcon } from '../../lib/utils';
 
 // TODO: 추후 수정
 type DiaryListItemProps = {
-    id: number;
+    id?: string;
     title: string;
     diary_date: string;
     content: string;
