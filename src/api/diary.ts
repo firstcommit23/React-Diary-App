@@ -1,21 +1,21 @@
 import axios from 'axios';
-import { getDiary, setData } from '../firebase';
+import { getDiary, setData, getDiaryDetail } from '../firebase';
 
 export async function getDiaryList() {
     //const response = await axios.get<Diary[]>(`https://api.github.com/users`);
     const response = await getDiary();
 
     //sort
-    response.sort((a, b) => (a.diary_date > b.diary_date ? -1 : 1));
+    response.sort((a: any, b: any) => (a.diary_date > b.diary_date ? -1 : 1));
     return response;
 }
 
 // TODO: 나중에 stirng -> number로 변경
-export async function getDiaryDetail(id: string) {
-    const response = await axios.get<Diary>(
-        `https://api.github.com/users/${id}`
-    );
-    return response.data;
+export async function getDiaryData(id: string) {
+    console.log('in diary api..', id);
+    const response = await getDiaryDetail(id);
+
+    return response;
 }
 
 export async function setDiary(diary: Diary) {

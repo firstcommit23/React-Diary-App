@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Header from '../components/header';
 import { RouteComponentProps } from 'react-router';
+import DiaryDetaiLoader from '../containers/diary/DiaryDetailLoader';
 
 export interface DefailtPageProps extends RouteComponentProps<{ id: string }> {}
 const DetailPage: React.FC<DefailtPageProps> = ({ match }) => {
@@ -12,7 +13,7 @@ const DetailPage: React.FC<DefailtPageProps> = ({ match }) => {
             <ContentsContainer>
                 <ContentsWrapper>
                     <MainContents>
-                        글일긱 상세 화면! 너는 일기를 쓴다!
+                        <DiaryDetaiLoader id={id} />
                     </MainContents>
                 </ContentsWrapper>
             </ContentsContainer>

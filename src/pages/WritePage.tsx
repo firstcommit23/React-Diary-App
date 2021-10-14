@@ -12,16 +12,6 @@ import { setDiary, Diary } from '../api/diary';
 // 컴포넌트 리펙토링 고민하기
 // 파이어베이스 연동
 
-interface DiaryWriteType2 {
-    title: string;
-    user_id: string;
-    content: string;
-    user_name: string;
-    mood?: string;
-    weather?: string;
-    diary_date: string;
-}
-
 function WritePage() {
     const [today, setToday] = useState(new Date());
     const [diaryData, setDiaryData] = useState<Diary>({
