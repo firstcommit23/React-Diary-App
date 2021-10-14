@@ -29,37 +29,27 @@ const config = {
 const app = initializeApp(config);
 const db = getFirestore(app);
 
-export async function getDiary() {
+export async function getDocuments(collectionName: string) {
     // const diaryCol = collection(db, 'diary');
     // const diarySnapshop = await getDocs(diaryCol);
     // const diaryList = diarySnapshop.docs.map((doc) => doc.data());
-
-    const diaryList = getDocs(collection(db, 'diary'));
     const result: any = [];
-    (await diaryList).forEach((doc) =>
-        result.push({
-            id: doc.id,
-            diary_date: doc.data().diary_date,
-            ...doc.data(),
-        })
-    );
+
+    const crt = collection(db, collectionName);
+    const snapshot = await getDocs(crt);
+
+    await snapshot.forEach((child) => {
+        let id = child.id;
+        let data = child.data();
+
+        result.push({ id, ...data });
+    });
+
     return result;
 }
 
-export async function getDiaryDetail(docId: string) {
-    // const q = collection(db, 'diary', docId);
-    // console.log(q);
-    // const diarySnapshop = await getDocs(q);
-    // const diaryDetail = diarySnapshop.docs[0].data();
-
-    // const diaryCol = collection(db, 'diary');
-    // const diarySnapshop = await getDocs(diaryCol);
-    // let detail = {};
-    // diarySnapshop.docs.forEach((doc) => {
-    //     if (doc.id === docId) detail = { ...doc.data() };
-    // });
-
-    const docRef = doc(db, 'diary', docId);
+export async function getDocument(collectionName: string, documentId: string) {
+    const docRef = doc(db, collectionName, documentId);
     const docSnap = await getDoc(docRef);
 
     if (!docSnap.exists()) {
@@ -69,7 +59,7 @@ export async function getDiaryDetail(docId: string) {
     return docSnap.data();
 }
 
-export async function setData(colle: string, data: any) {
+export async function postDocument(colle: string, data: any) {
     try {
         await addDoc(collection(getFirestore(), colle), {
             ...data,

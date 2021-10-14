@@ -7,14 +7,26 @@ import format from 'date-fns/format';
 import Button from '../components/common/Button';
 import { useHistory } from 'react-router-dom';
 import { setDiary, Diary } from '../api/diary';
+import toast from '../lib/toast';
 
 // 임시저장한 내용이 있으면 가져오기
 // 컴포넌트 리펙토링 고민하기
 // 파이어베이스 연동
 
+interface WriteDiary {
+    title: string;
+    diary_date: string;
+    content: string;
+    mood: string;
+    weather: string;
+    open_yn?: string;
+    user_id: string;
+    user_name: string;
+}
+
 function WritePage() {
     const [today, setToday] = useState(new Date());
-    const [diaryData, setDiaryData] = useState<Diary>({
+    const [diaryData, setDiaryData] = useState<WriteDiary>({
         title: '',
         user_id: 'guest',
         content: '',
@@ -22,7 +34,6 @@ function WritePage() {
         diary_date: format(today, 'yyyy-M-d'),
         mood: '',
         weather: '',
-        id: 0,
     });
 
     // TODO: useCallback 적용
@@ -76,9 +87,14 @@ function WritePage() {
         });
     };
 
-    const onPublish = () => {
-        console.log(diaryData);
-        setDiary(diaryData);
+    const onPublish = async () => {
+        if (diaryData.title === '') {
+            toast.error('제목은 꼭 입력해 주세요!');
+            return;
+        }
+        await setDiary(diaryData);
+        toast.info('등록 되었습니다.');
+        history.push('/');
     };
 
     return (
@@ -177,7 +193,7 @@ function WritePage() {
                             ) : (
                                 <>
                                     <WeatherIcon
-                                        data-weather="ROMANTIC"
+                                        data-weather="SUNNY"
                                         onClick={onWeatherChange}
                                     >
                                         ☀️
