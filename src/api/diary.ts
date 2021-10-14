@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getDiary } from '../firebase';
+import { getDiary, setData } from '../firebase';
 
 export async function getDiaryList() {
     //const response = await axios.get<Diary[]>(`https://api.github.com/users`);
@@ -18,6 +18,12 @@ export async function getDiaryDetail(id: string) {
     return response.data;
 }
 
+export async function setDiary(diary: Diary) {
+    // 유효성 체크는 완료 후 오는 것으로.
+    // id는 어쩌지 근데
+    await setData('diary', diary);
+}
+
 export interface Diary {
     id: number;
     title: string;
@@ -25,7 +31,7 @@ export interface Diary {
     content: string;
     mood: string;
     weather: string;
-    open_yn: string;
+    open_yn?: string;
     user_id: string;
     user_name: string;
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { formatDate, getMoodIcon, getWeatherIcon } from '../../lib/utils';
 
 // TODO: 추후 수정
 type DiaryViwerProps = {

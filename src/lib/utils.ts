@@ -30,7 +30,7 @@ interface MapType {
 }
 
 //TODO:
-const MoodTypeMap: MapType = {
+export const MoodTypeMap: MapType = {
     ROMANTIC: '🌻',
     SWEET: '😚',
     HAPPY: '😁',
@@ -41,7 +41,7 @@ const MoodTypeMap: MapType = {
     NORMAL: '😶',
 };
 
-const WeatherTypeMap: MapType = {
+export const WeatherTypeMap: MapType = {
     SUNNY: '☀️',
     PARIALLY_CLOUDY: '🌤',
     CLOUDY: '☁️',
