@@ -4,6 +4,7 @@ import { RootState } from '../../modules';
 import { getDiaryDetailAsync } from '../../modules/diary';
 import DiaryViewer from '../../components/diary/DiaryViewer';
 import styled from 'styled-components';
+import Loading from '../../components/loading/Loadingg';
 
 type DiaryDetailLoaderProps = {
     id: string;
@@ -21,7 +22,7 @@ function DiaryDetailLoader({ id }: DiaryDetailLoaderProps) {
 
     return (
         <>
-            {loading && <p style={{ textAlign: 'center' }}>로딩중...</p>}
+            {loading && <Loading />}
             {error && <p style={{ textAlign: 'center' }}>에러 발생!...</p>}
             {data && (
                 <DiaryViewer

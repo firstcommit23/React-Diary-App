@@ -4,6 +4,7 @@ import { RootState } from '../../modules';
 import { getDiaryListAsync } from '../../modules/diary';
 import DiaryListItem from '../../components/diary/DiaryListItem';
 import styled from 'styled-components';
+import Loading from '../../components/loading/Loadingg';
 
 function DiaryListLoader() {
     const { data, loading, error } = useSelector(
@@ -16,9 +17,9 @@ function DiaryListLoader() {
 
     return (
         <>
-            {loading && <p style={{ textAlign: 'center' }}>로딩중...</p>}
+            {loading && <Loading />}
             {error && <p style={{ textAlign: 'center' }}>에러 발생!...</p>}
-            {data && data.length > 0 ? (
+            {data &&
                 data.map((diary) => (
                     <>
                         <DiaryListItem
@@ -36,10 +37,7 @@ function DiaryListLoader() {
 
                         <DiaryItemDiv />
                     </>
-                ))
-            ) : (
-                <div>등록된 일기가 없습니다. 새롭게 작성해 보시겠어요?</div>
-            )}
+                ))}
         </>
     );
 }

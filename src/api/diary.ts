@@ -6,7 +6,9 @@ export async function getDiaryList() {
     const response = await getDocuments('diary');
 
     //sort
-    // response.sort((a: any, b: any) => (a.diary_date > b.diary_date ? -1 : 1));
+    response.sort((a: any, b: any) =>
+        new Date(a.diary_date) > new Date(b.diary_date) ? -1 : 1
+    );
     return response;
 }
 

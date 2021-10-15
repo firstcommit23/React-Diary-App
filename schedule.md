@@ -49,6 +49,8 @@
 -   git pull 잘못받아서 git reflog, git reset 명령어 사용
 -   git action으로 배포환경 만들어보는 중.
     일단 git branch main을 배포하는 걸로 해보자
+-   git action으로 이것 저것해보다가 개발 브런치에서 pull 하고 이것 저것하다가 작업한 거 날려먹음 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+-   로딩 추가
 
 ## TODO
 
