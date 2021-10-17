@@ -7,7 +7,7 @@ type DiaryViwerProps = {
     title: string;
     diary_date: string;
     content: string;
-    mood: string; //TODO: 이런경우
+    mood: string;
     weather: string;
     open_yn?: string;
     user_id: string;

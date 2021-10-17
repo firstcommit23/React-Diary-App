@@ -34,6 +34,7 @@ const ContentsWrapper = styled.div`
 `;
 
 const MainContents = styled.div`
+    position: relative;
     margin: 0 64px;
     min-width: 0;
     width: 100%;

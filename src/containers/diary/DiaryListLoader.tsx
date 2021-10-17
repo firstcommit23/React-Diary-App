@@ -4,7 +4,7 @@ import { RootState } from '../../modules';
 import { getDiaryListAsync } from '../../modules/diary';
 import DiaryListItem from '../../components/diary/DiaryListItem';
 import styled from 'styled-components';
-import Loading from '../../components/loading/Loadingg';
+import Loading from '../../components/loading/Loading';
 
 function DiaryListLoader() {
     const { data, loading, error } = useSelector(

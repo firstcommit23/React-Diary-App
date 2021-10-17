@@ -22,7 +22,8 @@ export async function getDiaryData(id: string) {
 
 export async function setDiary(diary: Diary) {
     // 유효성 체크는 완료 후 오는 것으로.
-    // id는 어쩌지 근데
+    diary['insert_at'] = new Date();
+    diary['update_at'] = new Date();
     await postDocument('diary', diary);
 }
 
@@ -36,4 +37,6 @@ export interface Diary {
     open_yn?: string;
     user_id: string;
     user_name: string;
+    insert_at?: Date;
+    update_at?: Date;
 }

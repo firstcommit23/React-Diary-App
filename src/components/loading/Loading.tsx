@@ -13,7 +13,7 @@ const spin = keyframes`
 `;
 
 const Spinner = styled(RiLoader4Line)`
-    position: absolute;
+    position: relative;
     top: 40%;
     left: 50%;
     transform-origin: center;
@@ -22,11 +22,11 @@ const Spinner = styled(RiLoader4Line)`
 `;
 
 const Container = styled.div`
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
-    font-size: ${(props) => props.theme.fontSize.xLarge};
+    font-size: 80px;
     background-color: rgba(255, 255, 255, 0.3);
     z-index: 99;
 `;
