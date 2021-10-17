@@ -1,13 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import Header from '../components/header';
-import DatePicker from 'react-date-picker';
-import { getMoodIcon, getWeatherIcon } from '../lib/utils';
-import format from 'date-fns/format';
-import Button from '../components/common/Button';
-import { useHistory } from 'react-router-dom';
-import { setDiary, Diary } from '../api/diary';
-import toast from '../lib/toast';
 import DiaryWriteLoader from '../containers/diary/DiaryWriteLoader';
 
 // 임시저장한 내용이 있으면 가져오기
@@ -42,6 +35,7 @@ function WritePage() {
 
 const MainTemplate = styled.section`
     width: 100%;
+    height: 100vh;
 `;
 
 const ContentsContainer = styled.main`
@@ -59,9 +53,14 @@ const MainContents = styled.div`
     width: 100%;
     max-width: ${({ theme }) => theme.width.maxWidth};
     padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    overflow-y: hidden;
 
     & > div {
         padding: 10px 0;
+        position: relative;
     }
 `;
 

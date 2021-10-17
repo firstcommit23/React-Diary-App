@@ -30,10 +30,10 @@ function DiaryViewer({
                 <div>
                     <DiaryDate>
                         <DiaryDateSpan>{formatDate(diary_date)}</DiaryDateSpan>{' '}
-                        <DiaryDateSpan before={true}>
+                        <DiaryDateSpan before={mood ? true : false}>
                             {getMoodIcon(mood)}
                         </DiaryDateSpan>
-                        <DiaryDateSpan before={true}>
+                        <DiaryDateSpan before={weather ? true : false}>
                             {getWeatherIcon(weather)}
                         </DiaryDateSpan>
                     </DiaryDate>
@@ -41,7 +41,9 @@ function DiaryViewer({
                         <h1>{title}</h1>
                     </Title>
                     {false && <Writer>👶{user_name}</Writer>}
-                    <Content>{content}</Content>
+                    <Content
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    ></Content>
                 </div>
             </DiaryItemBox>
             <DiaryButtonBox>

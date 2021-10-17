@@ -5,6 +5,7 @@ import format from 'date-fns/format';
 import Button from '../common/Button';
 import { useHistory } from 'react-router-dom';
 import { getMoodIcon, getWeatherIcon } from '../../lib/utils';
+import Editor from '../write/Editor';
 
 interface WriteDiary {
     title: string;
@@ -39,6 +40,13 @@ function DiaryWrite({
 }: DiaryWriteProps) {
     // TODO: useCallback 적용
     const history = useHistory();
+
+    const setContentChange = (content: string) => {
+        setDiaryData({
+            ...diaryData,
+            content,
+        });
+    };
 
     return (
         <>
@@ -146,13 +154,17 @@ function DiaryWrite({
                     </>
                 )}
             </div>
-            <div>
-                <Textarea
+            <EditorSection>
+                {/* <Textarea
                     placeholder="당신의 오늘은 어떤 날이였나요?"
                     name="content"
                     onChange={onChange}
-                ></Textarea>
-            </div>
+                ></Textarea> */}
+                <Textarea
+                    setContents={setContentChange}
+                    contents={diaryData.content}
+                />
+            </EditorSection>
             <WriteFooter>
                 <BackButton onClick={() => history.goBack()}>나가기</BackButton>
                 <Group>
@@ -180,7 +192,8 @@ const TitleInput = styled.input`
     transition: all 0.25s;
 `;
 
-const Textarea = styled.textarea`
+const Textarea = styled(Editor)`
+    flex-grow: 1;
     width: 100%;
     height: 500px;
     border: 2px solid #e2e2e2;
@@ -191,6 +204,11 @@ const Textarea = styled.textarea`
     color: #000;
     font-size: 20px;
     transition: all 0.25s;
+`;
+
+const EditorSection = styled.div`
+    flex: 0.7 1 auto;
+    margin-bottom: 40px;
 `;
 
 const MoodIcon = styled.span`

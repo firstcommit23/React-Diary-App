@@ -27,16 +27,17 @@ function DiaryListItem({
     user_id,
     user_name,
 }: DiaryListItemProps) {
+    const removeTagContent = content.replace(/<[^>]+>/g, '');
     return (
         <Container>
             <DiaryItemBox>
                 <div>
                     <DiaryDate>
                         <DiaryDateSpan>{formatDate(diary_date)}</DiaryDateSpan>{' '}
-                        <DiaryDateSpan before={true}>
+                        <DiaryDateSpan before={mood ? true : false}>
                             {getMoodIcon(mood)}
                         </DiaryDateSpan>
-                        <DiaryDateSpan before={true}>
+                        <DiaryDateSpan before={weather ? true : false}>
                             {getWeatherIcon(weather)}
                         </DiaryDateSpan>
                     </DiaryDate>
@@ -44,7 +45,11 @@ function DiaryListItem({
                         <h1>{title}</h1>
                     </Title>
                     {false && <Writer>👶{user_name}</Writer>}
-                    <Content>{content}</Content>
+                    <Content>
+                        {removeTagContent.length > 200
+                            ? removeTagContent.substr(0, 200).concat('...')
+                            : removeTagContent}
+                    </Content>
                 </div>
             </DiaryItemBox>
             <DiaryButtonBox>
