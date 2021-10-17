@@ -78,7 +78,7 @@
 
 ## TODO
 
--   [ ] nginx 서버
+-   [ ] nginx 서버로 포트포워딩(?) 하기
 -   [x] 작성페이지 분리 (1h)
 -   [ ] mood/weather 컴포넌트 분리
 -   [x] 날짜, 입력일자 받기 (10min)
@@ -86,3 +86,4 @@
 -   [ ] 반응형 적용하기
 -   [ ] 1차 릴리즈 태그 추가하기
 -   [ ] github action 이용하여 자동 배포 설정하기
+-   [ ] /diary/RCq6RZIKUdEBAouiybVY 로 직접 url 접속한 경우 404 Error 발생
