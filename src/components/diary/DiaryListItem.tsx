@@ -14,6 +14,7 @@ type DiaryListItemProps = {
     open_yn?: string;
     user_id: string;
     user_name: string;
+    onDelete: (id: string) => void;
 };
 
 function DiaryListItem({
@@ -26,6 +27,7 @@ function DiaryListItem({
     open_yn,
     user_id,
     user_name,
+    onDelete,
 }: DiaryListItemProps) {
     const removeTagContent = content.replace(/<[^>]+>/g, '');
     return (
@@ -54,7 +56,7 @@ function DiaryListItem({
             </DiaryItemBox>
             <DiaryButtonBox>
                 <div>좋아요</div>
-                <div>삭제</div>
+                <div onClick={() => (id ? onDelete(id) : null)}>삭제</div>
                 <div>수정</div>
             </DiaryButtonBox>
         </Container>
@@ -133,12 +135,14 @@ const Content = styled.div`
     font-size: 21px;
     word-break: break-word;
 `;
+
 const DiaryButtonBox = styled.div`
     display: flex;
 
     & > div {
         margin-right: 5px;
         font-size: 0.85rem;
+        cursor: pointer;
     }
 `;
 export default DiaryListItem;

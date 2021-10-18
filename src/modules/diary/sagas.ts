@@ -3,8 +3,15 @@ import {
     GET_DIARY_LIST,
     getDiaryDetailAsync,
     GET_DIARY_DETAIL,
+    deleteDiaryAsync,
+    DELETE_DIARY,
 } from './actions';
-import { getDiaryList, Diary, getDiaryData } from '../../api/diary';
+import {
+    getDiaryList,
+    Diary,
+    getDiaryData,
+    deleteDiary,
+} from '../../api/diary';
 import { put, call, takeEvery } from 'redux-saga/effects';
 
 function* getDiaryListSaga(
@@ -30,7 +37,16 @@ function* getDiaryDetailSaga(
     }
 }
 
+function* removeDiarySaga(action: ReturnType<typeof deleteDiaryAsync>) {
+    const response: { status: number } = yield call(
+        deleteDiary,
+        action.payload
+    );
+    // const response = yield call(deleteDiary, id);
+}
+
 export function* diarySaga() {
     yield takeEvery(GET_DIARY_LIST, getDiaryListSaga);
     yield takeEvery(GET_DIARY_DETAIL, getDiaryDetailSaga);
+    yield takeEvery(DELETE_DIARY, removeDiarySaga);
 }

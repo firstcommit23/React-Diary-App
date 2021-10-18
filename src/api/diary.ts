@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { getDocuments, postDocument, getDocument } from '../firebase';
+import {
+    getDocuments,
+    postDocument,
+    getDocument,
+    deleteDocument,
+} from '../firebase';
 
 export async function getDiaryList() {
     //const response = await axios.get<Diary[]>(`https://api.github.com/users`);
@@ -25,6 +30,10 @@ export async function setDiary(diary: Diary) {
     diary['insert_at'] = new Date();
     diary['update_at'] = new Date();
     await postDocument('diary', diary);
+}
+
+export async function deleteDiary(id: string) {
+    await deleteDocument('diary', id);
 }
 
 export interface Diary {

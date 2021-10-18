@@ -78,6 +78,8 @@
 
 ## TODO
 
+3h
+
 -   [ ] nginx 서버로 포트포워딩(?) 하기
 -   [x] 작성페이지 분리 (1h)
 -   [ ] mood/weather 컴포넌트 분리
@@ -85,5 +87,19 @@
 -   [x] 텍스트 에디터 추가하기 (1h) 텍스트 에디터(quill) 스타일 수정 필요
 -   [ ] 반응형 적용하기
 -   [ ] 1차 릴리즈 태그 추가하기
+-   [ ] github action 이용하여 자동 배포 설정하기
+-   [ ] /diary/RCq6RZIKUdEBAouiybVY 로 직접 url 접속한 경우 404 Error 발생
+
+[2021.10.18]
+
+## TODO
+
+-   [x] 삭제 기능.. redux가 아직 익숙하지 않아서 힘드네요
+-   [ ] 수정 기능
+-   [ ] 좋아요 기능
+-   [ ] mood/weather 컴포넌트 분리
+-   [ ] 반응형 적용하기
+-   [ ] 1차 릴리즈 태그 추가하기
+-   [ ] nginx 서버로 포트포워딩(?) 하기
 -   [ ] github action 이용하여 자동 배포 설정하기
 -   [ ] /diary/RCq6RZIKUdEBAouiybVY 로 직접 url 접속한 경우 404 Error 발생

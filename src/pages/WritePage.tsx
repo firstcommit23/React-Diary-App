@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import Header from '../components/header';
 import DiaryWriteLoader from '../containers/diary/DiaryWriteLoader';
+import { media } from '../styles/theme';
 
 // 임시저장한 내용이 있으면 가져오기
 // 컴포넌트 리펙토링 고민하기
@@ -36,6 +37,10 @@ function WritePage() {
 const MainTemplate = styled.section`
     width: 100%;
     height: 100vh;
+
+    ${media.mobile} {
+        height: 100%;
+    }
 `;
 
 const ContentsContainer = styled.main`
@@ -61,6 +66,11 @@ const MainContents = styled.div`
     & > div {
         padding: 10px 0;
         position: relative;
+    }
+
+    ${media.mobile} {
+        margin: 0 14px;
+        height: 100%;
     }
 `;
 

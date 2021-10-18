@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import { getDiaryListAsync } from '../../modules/diary';
+import { getDiaryListAsync, deleteDiaryAsync } from '../../modules/diary';
 import DiaryListItem from '../../components/diary/DiaryListItem';
 import styled from 'styled-components';
 import Loading from '../../components/loading/Loading';
+import toast from '../../lib/toast';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function DiaryListLoader() {
     const { data, loading, error } = useSelector(
@@ -14,6 +17,23 @@ function DiaryListLoader() {
     useEffect(() => {
         dispatch(getDiaryListAsync.request());
     }, []);
+
+    const confirlDelete = (id: string) => {
+        confirmAlert({
+            message: '작성하신 일기를 삭제하시겠습니까?',
+            buttons: [
+                { label: '삭제', onClick: () => onDelete(id) },
+                { label: '취소', onClick: () => console.log('No') },
+            ],
+        });
+    };
+
+    const onDelete = (id: string) => {
+        const result = dispatch(deleteDiaryAsync(id));
+        toast.success('삭제되었습니다!');
+
+        dispatch(getDiaryListAsync.request());
+    };
 
     return (
         <>
@@ -33,6 +53,7 @@ function DiaryListLoader() {
                             weather={diary.weather}
                             open_yn={diary.open_yn}
                             diary_date={diary.diary_date}
+                            onDelete={confirlDelete}
                         />
 
                         <DiaryItemDiv />

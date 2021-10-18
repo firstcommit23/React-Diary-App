@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import HeaderLogo from './HeaderLogo';
 import HeaderInfo from './HeaderInfo';
+import { media } from '../../styles/theme';
 
 export type HeaderProps = {
     children?: React.ReactNode;
@@ -34,6 +35,10 @@ const Wrapper = styled.div`
     margin: 0 64px;
     max-width: ${({ theme }) => theme.width.maxWidth};
     width: 100%;
+
+    ${media.mobile} {
+        margin: 0 18px;
+    }
 `;
 
 const HeaderBox = styled.div`

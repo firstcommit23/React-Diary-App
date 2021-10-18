@@ -13,6 +13,7 @@ import {
     updateDoc,
     doc,
     serverTimestamp,
+    deleteDoc,
 } from 'firebase/firestore/lite';
 
 const config = {
@@ -63,6 +64,15 @@ export async function postDocument(colle: string, data: any) {
     try {
         await addDoc(collection(getFirestore(), colle), {
             ...data,
+        });
+    } catch (e) {}
+}
+
+export async function deleteDocument(colle: string, documentId: string) {
+    try {
+        await deleteDoc(doc(db, colle, documentId)).then((res) => {
+            console.log(res);
+            return { status: 200 };
         });
     } catch (e) {}
 }

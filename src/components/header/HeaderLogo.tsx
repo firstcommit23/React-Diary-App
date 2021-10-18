@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { media } from '../../styles/theme';
+
 export type HeaderLogoProps = {};
 
 function HeaderLogo({}: HeaderLogoProps) {
@@ -29,6 +31,10 @@ const Wrapper = styled.div`
     width: 100%;
     span {
         font-size: 1.2rem;
+        ${media.mobile} {
+            display: none;
+            font-size: 0.8rem;
+        }
         color: rgba(117, 117, 117, 1);
     }
 `;
