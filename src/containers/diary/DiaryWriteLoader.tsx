@@ -1,28 +1,21 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import format from 'date-fns/format';
 import { useHistory } from 'react-router-dom';
 import toast from '../../lib/toast';
 import { setDiary, Diary } from '../../api/diary';
 import DiaryWrite from '../../components/diary/DiaryWrite';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../modules';
+import { getDiaryDetailAsync } from '../../modules/diary';
 
 type DiaryWriteLoaderProps = {
-    id?: string;
+    id?: string | null;
 };
-
-interface WriteDiary {
-    title: string;
-    diary_date: string;
-    content: string;
-    mood: string;
-    weather: string;
-    open_yn?: string;
-    user_id: string;
-    user_name: string;
-}
 
 function DiaryWriteLoader({ id }: DiaryWriteLoaderProps) {
     const [today, setToday] = useState(new Date());
-    const [diaryData, setDiaryData] = useState<WriteDiary>({
+    const [diaryData, setDiaryData] = useState<Diary>({
+        id: '',
         title: '',
         user_id: 'guest',
         content: '',
@@ -33,6 +26,21 @@ function DiaryWriteLoader({ id }: DiaryWriteLoaderProps) {
     });
     // TODO: useCallback 적용
     const history = useHistory();
+
+    // id가 있을 경우 조회
+    const { data, loading, error } = useSelector(
+        (state: RootState) => state.diary.diary
+    );
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (id) {
+            dispatch(getDiaryDetailAsync.request(id));
+            if (data) {
+                setDiaryData(data);
+                console.log('data:', data);
+            }
+        }
+    }, [dispatch]);
 
     // TODO: hook 만들기
     const onMoodChange = (e: React.MouseEvent<HTMLElement>) => {

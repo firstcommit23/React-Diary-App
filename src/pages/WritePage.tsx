@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
+import { RouteComponentProps } from 'react-router';
 import Header from '../components/header';
 import DiaryWriteLoader from '../containers/diary/DiaryWriteLoader';
 import { media } from '../styles/theme';
@@ -8,31 +9,22 @@ import { media } from '../styles/theme';
 // 컴포넌트 리펙토링 고민하기
 // 파이어베이스 연동
 
-interface WriteDiary {
-    title: string;
-    diary_date: string;
-    content: string;
-    mood: string;
-    weather: string;
-    open_yn?: string;
-    user_id: string;
-    user_name: string;
-}
-
-function WritePage() {
+interface WriteDiaryProps extends RouteComponentProps<{ id: string }> {}
+const WritePage: React.FC<WriteDiaryProps> = ({ match }) => {
+    const { id } = match.params;
     return (
         <MainTemplate>
             <Header />
             <ContentsContainer>
                 <ContentsWrapper>
                     <MainContents>
-                        <DiaryWriteLoader />
+                        <DiaryWriteLoader id={id} />
                     </MainContents>
                 </ContentsWrapper>
             </ContentsContainer>
         </MainTemplate>
     );
-}
+};
 
 const MainTemplate = styled.section`
     width: 100%;

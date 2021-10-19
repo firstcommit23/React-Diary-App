@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import DatePicker from 'react-date-picker';
 import format from 'date-fns/format';
@@ -6,20 +6,11 @@ import Button from '../common/Button';
 import { useHistory } from 'react-router-dom';
 import { getMoodIcon, getWeatherIcon } from '../../lib/utils';
 import Editor from '../write/Editor';
+import { Diary } from '../../api/diary';
 
-interface WriteDiary {
-    title: string;
-    diary_date: string;
-    content: string;
-    mood: string;
-    weather: string;
-    open_yn?: string;
-    user_id: string;
-    user_name: string;
-}
 type DiaryWriteProps = {
-    diaryData: WriteDiary;
-    setDiaryData: (data: WriteDiary) => void;
+    diaryData: Diary;
+    setDiaryData: (data: Diary) => void;
     today: Date;
     setToday: (date: Date) => void;
     onMoodChange: (e: React.MouseEvent<HTMLElement>) => void;
@@ -47,6 +38,7 @@ function DiaryWrite({
             content,
         });
     };
+    console.log(diaryData);
 
     return (
         <>
@@ -68,6 +60,7 @@ function DiaryWrite({
                     name="title"
                     placeholder="제목을 입력하세요"
                     onChange={onChange}
+                    value={diaryData.title}
                 />
             </div>
             <div>
@@ -172,7 +165,7 @@ function DiaryWrite({
                         임시저장
                     </StyledButton>
                     <StyledButton inline onClick={onPublish}>
-                        작성완료
+                        {diaryData.id ? '수정완료' : '작성완료'}
                     </StyledButton>
                 </Group>
             </WriteFooter>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { formatDate, getMoodIcon, getWeatherIcon } from '../../lib/utils';
 
 // TODO: 추후 수정
@@ -29,6 +30,7 @@ function DiaryListItem({
     user_name,
     onDelete,
 }: DiaryListItemProps) {
+    const history = useHistory();
     const removeTagContent = content.replace(/<[^>]+>/g, '');
     return (
         <Container>
@@ -57,7 +59,7 @@ function DiaryListItem({
             <DiaryButtonBox>
                 <div>좋아요</div>
                 <div onClick={() => (id ? onDelete(id) : null)}>삭제</div>
-                <div>수정</div>
+                <div onClick={() => history.push(`/write/${id}`)}>수정</div>
             </DiaryButtonBox>
         </Container>
     );
