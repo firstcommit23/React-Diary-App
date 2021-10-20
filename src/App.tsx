@@ -16,6 +16,11 @@ function App() {
                     <Route exact path="/write" component={WritePage}></Route>
                     <Route
                         exact
+                        path="/write/:id"
+                        component={WritePage}
+                    ></Route>
+                    <Route
+                        exact
                         path="/diary/:id"
                         component={DetailPage}
                     ></Route>

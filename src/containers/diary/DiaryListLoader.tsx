@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import { getDiaryListAsync } from '../../modules/diary';
+import { getDiaryListAsync, deleteDiaryAsync } from '../../modules/diary';
 import DiaryListItem from '../../components/diary/DiaryListItem';
 import styled from 'styled-components';
-import Loading from '../../components/loading/Loadingg';
+import Loading from '../../components/loading/Loading';
+import toast from '../../lib/toast';
 
 function DiaryListLoader() {
     const { data, loading, error } = useSelector(
@@ -13,17 +14,25 @@ function DiaryListLoader() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getDiaryListAsync.request());
-    }, []);
+    }, [dispatch]);
+
+    const onDelete = (id: string) => {
+        const result = dispatch(deleteDiaryAsync(id));
+        toast.success('삭제되었습니다!');
+
+        // 동기적으로 실행되야 하는데..
+        dispatch(getDiaryListAsync.request());
+    };
 
     return (
         <>
             {loading && <Loading />}
             {error && <p style={{ textAlign: 'center' }}>에러 발생!...</p>}
             {data &&
-                data.map((diary) => (
+                data.map((diary, index) => (
                     <>
                         <DiaryListItem
-                            key={diary.id}
+                            key={index}
                             id={diary.id}
                             title={diary.title}
                             content={diary.content}
@@ -33,6 +42,7 @@ function DiaryListLoader() {
                             weather={diary.weather}
                             open_yn={diary.open_yn}
                             diary_date={diary.diary_date}
+                            onDelete={onDelete}
                         />
 
                         <DiaryItemDiv />

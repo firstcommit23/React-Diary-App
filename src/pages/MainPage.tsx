@@ -1,6 +1,7 @@
 import DiaryListLoader from '../containers/diary/DiaryListLoader';
 import styled from 'styled-components';
 import Header from '../components/header';
+import { media } from '../styles/theme';
 
 function MainPage() {
     return (
@@ -32,14 +33,24 @@ const ContentsWrapper = styled.div`
 `;
 
 const MainContents = styled.div`
+    position: relative;
+
     margin: 0 64px;
     min-width: 0;
     width: 100%;
     max-width: ${({ theme }) => theme.width.maxWidth};
+
+    ${media.mobile} {
+        margin: 0 14px;
+    }
 `;
 
 const DiaryListWrapper = styled.div`
     margin-top: 64px;
+
+    ${media.mobile} {
+        margin-top: 34px;
+    }
 `;
 
 export default MainPage;

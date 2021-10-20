@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { media } from '../../styles/theme';
 import palette, { buttonColorMap } from '../../styles/palette';
 
 type ColorType = 'teal' | 'gray' | 'darkGray';

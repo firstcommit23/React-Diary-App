@@ -3,6 +3,8 @@ import Header from '../components/header';
 import { RouteComponentProps } from 'react-router';
 import DiaryDetaiLoader from '../containers/diary/DiaryDetailLoader';
 
+import { media } from '../styles/theme';
+
 export interface DefailtPageProps extends RouteComponentProps<{ id: string }> {}
 const DetailPage: React.FC<DefailtPageProps> = ({ match }) => {
     const { id } = match.params;
@@ -34,10 +36,15 @@ const ContentsWrapper = styled.div`
 `;
 
 const MainContents = styled.div`
+    position: relative;
     margin: 0 64px;
     min-width: 0;
     width: 100%;
     max-width: ${({ theme }) => theme.width.maxWidth};
+
+    ${media.mobile} {
+        margin: 0 14px;
+    }
 `;
 
 export default DetailPage;
