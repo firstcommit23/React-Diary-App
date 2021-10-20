@@ -38,7 +38,7 @@ function DiaryWrite({
             content,
         });
     };
-    console.log(diaryData);
+    console.log('in component', diaryData);
 
     return (
         <>

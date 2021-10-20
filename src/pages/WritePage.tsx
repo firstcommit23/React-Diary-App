@@ -1,13 +1,9 @@
-import React, { useState, ChangeEvent } from 'react';
-import styled from 'styled-components';
 import { RouteComponentProps } from 'react-router';
+import styled from 'styled-components';
 import Header from '../components/header';
 import DiaryWriteLoader from '../containers/diary/DiaryWriteLoader';
+import DiaryModifyLoader from '../containers/diary/DiaryModifyLoader';
 import { media } from '../styles/theme';
-
-// 임시저장한 내용이 있으면 가져오기
-// 컴포넌트 리펙토링 고민하기
-// 파이어베이스 연동
 
 interface WriteDiaryProps extends RouteComponentProps<{ id: string }> {}
 const WritePage: React.FC<WriteDiaryProps> = ({ match }) => {
@@ -18,7 +14,11 @@ const WritePage: React.FC<WriteDiaryProps> = ({ match }) => {
             <ContentsContainer>
                 <ContentsWrapper>
                     <MainContents>
-                        <DiaryWriteLoader id={id} />
+                        {id ? (
+                            <DiaryModifyLoader id={id} />
+                        ) : (
+                            <DiaryWriteLoader />
+                        )}
                     </MainContents>
                 </ContentsWrapper>
             </ContentsContainer>
@@ -45,19 +45,19 @@ const ContentsWrapper = styled.div`
 
 const MainContents = styled.div`
     position: relative;
-    margin: 0 64px;
-    min-width: 0;
-    width: 100%;
-    max-width: ${({ theme }) => theme.width.maxWidth};
-    padding-top: 30px;
     display: flex;
     flex-direction: column;
+    margin: 0 64px;
+    padding-top: 30px;
+    width: 100%;
     height: 80vh;
+    min-width: 0;
+    max-width: ${({ theme }) => theme.width.maxWidth};
     overflow-y: hidden;
 
     & > div {
-        padding: 10px 0;
         position: relative;
+        padding: 10px 0;
     }
 
     ${media.mobile} {

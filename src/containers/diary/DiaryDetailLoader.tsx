@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { getDiaryDetailAsync } from '../../modules/diary';
 import DiaryViewer from '../../components/diary/DiaryViewer';
-import styled from 'styled-components';
 import Loading from '../../components/loading/Loading';
 
 type DiaryDetailLoaderProps = {
