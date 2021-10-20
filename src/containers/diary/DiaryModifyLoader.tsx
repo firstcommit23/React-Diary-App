@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useEffect } from 'react';
 import format from 'date-fns/format';
 import { useHistory } from 'react-router-dom';
 import toast from '../../lib/toast';
-import { setDiary, Diary } from '../../api/diary';
+import { updateDiary, Diary } from '../../api/diary';
 import DiaryWrite from '../../components/diary/DiaryWrite';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
@@ -97,9 +97,11 @@ function DiaryModifyLoader({ id }: DiaryModifyLoaderProps) {
             toast.error('제목은 꼭 입력해 주세요!');
             return;
         }
-        await setDiary(diaryData);
-        toast.info('등록 되었습니다.');
-        history.push('/');
+        diaryData.id = id;
+        await updateDiary(diaryData);
+
+        toast.info('수정 되었습니다.');
+        history.push(`/diary/${id}`);
     };
 
     return (

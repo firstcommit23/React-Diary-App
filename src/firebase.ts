@@ -68,6 +68,14 @@ export async function postDocument(colle: string, data: any) {
     } catch (e) {}
 }
 
+export async function updateDocument(colle: string, data: any) {
+    try {
+        await updateDoc(doc(db, colle, data.id), {
+            ...data,
+        });
+    } catch (e) {}
+}
+
 export async function deleteDocument(colle: string, documentId: string) {
     try {
         await deleteDoc(doc(db, colle, documentId)).then((res) => {

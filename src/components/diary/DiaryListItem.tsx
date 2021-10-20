@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { formatDate, getMoodIcon, getWeatherIcon } from '../../lib/utils';
+import toast from '../../lib/toast';
+import DiaryButtonBox from './DiaryButtonBox';
 
 // TODO: 추후 수정
 type DiaryListItemProps = {
@@ -30,7 +32,6 @@ function DiaryListItem({
     user_name,
     onDelete,
 }: DiaryListItemProps) {
-    const history = useHistory();
     const removeTagContent = content.replace(/<[^>]+>/g, '');
     return (
         <Container>
@@ -56,11 +57,7 @@ function DiaryListItem({
                     </Content>
                 </div>
             </DiaryItemBox>
-            <DiaryButtonBox>
-                <div>좋아요</div>
-                <div onClick={() => (id ? onDelete(id) : null)}>삭제</div>
-                <div onClick={() => history.push(`/write/${id}`)}>수정</div>
-            </DiaryButtonBox>
+            <DiaryButtonBox id={id} onDelete={onDelete} />
         </Container>
     );
 }
@@ -138,13 +135,4 @@ const Content = styled.div`
     word-break: break-word;
 `;
 
-const DiaryButtonBox = styled.div`
-    display: flex;
-
-    & > div {
-        margin-right: 5px;
-        font-size: 0.85rem;
-        cursor: pointer;
-    }
-`;
 export default DiaryListItem;

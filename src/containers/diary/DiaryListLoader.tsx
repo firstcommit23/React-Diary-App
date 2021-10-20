@@ -6,8 +6,6 @@ import DiaryListItem from '../../components/diary/DiaryListItem';
 import styled from 'styled-components';
 import Loading from '../../components/loading/Loading';
 import toast from '../../lib/toast';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function DiaryListLoader() {
     const { data, loading, error } = useSelector(
@@ -16,22 +14,13 @@ function DiaryListLoader() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getDiaryListAsync.request());
-    }, []);
-
-    const confirlDelete = (id: string) => {
-        confirmAlert({
-            message: '작성하신 일기를 삭제하시겠습니까?',
-            buttons: [
-                { label: '삭제', onClick: () => onDelete(id) },
-                { label: '취소', onClick: () => console.log('No') },
-            ],
-        });
-    };
+    }, [dispatch]);
 
     const onDelete = (id: string) => {
         const result = dispatch(deleteDiaryAsync(id));
         toast.success('삭제되었습니다!');
 
+        // 동기적으로 실행되야 하는데..
         dispatch(getDiaryListAsync.request());
     };
 
@@ -40,10 +29,10 @@ function DiaryListLoader() {
             {loading && <Loading />}
             {error && <p style={{ textAlign: 'center' }}>에러 발생!...</p>}
             {data &&
-                data.map((diary) => (
+                data.map((diary, index) => (
                     <>
                         <DiaryListItem
-                            key={diary.id}
+                            key={index}
                             id={diary.id}
                             title={diary.title}
                             content={diary.content}
@@ -53,7 +42,7 @@ function DiaryListLoader() {
                             weather={diary.weather}
                             open_yn={diary.open_yn}
                             diary_date={diary.diary_date}
-                            onDelete={confirlDelete}
+                            onDelete={onDelete}
                         />
 
                         <DiaryItemDiv />

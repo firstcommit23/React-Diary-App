@@ -9,7 +9,7 @@ function DiaryWriteLoader() {
     const [today, setToday] = useState(new Date());
     const [diaryData, setDiaryData] = useState<Diary>({
         id: '',
-        title: '제목',
+        title: '',
         user_id: 'guest',
         content: '',
         user_name: 'GUEST',

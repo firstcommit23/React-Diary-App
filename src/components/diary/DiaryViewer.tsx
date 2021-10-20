@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { formatDate, getMoodIcon, getWeatherIcon } from '../../lib/utils';
+import DiaryButtonBox from './DiaryButtonBox';
 
 // TODO: 추후 수정
 type DiaryViwerProps = {
+    id: string | undefined;
     title: string;
     diary_date: string;
     content: string;
@@ -12,9 +14,11 @@ type DiaryViwerProps = {
     open_yn?: string;
     user_id: string;
     user_name: string;
+    onDelete: (id: string) => void;
 };
 
 function DiaryViewer({
+    id,
     title,
     diary_date,
     content,
@@ -23,6 +27,7 @@ function DiaryViewer({
     open_yn,
     user_id,
     user_name,
+    onDelete,
 }: DiaryViwerProps) {
     return (
         <Container>
@@ -46,11 +51,7 @@ function DiaryViewer({
                     ></Content>
                 </div>
             </DiaryItemBox>
-            <DiaryButtonBox>
-                <div>좋아요</div>
-                <div>삭제</div>
-                <div>수정</div>
-            </DiaryButtonBox>
+            <DiaryButtonBox id={id} onDelete={onDelete} />
         </Container>
     );
 }
@@ -125,14 +126,6 @@ const Content = styled.div`
     letter-spacing: -0.003em;
     font-size: 21px;
     word-break: break-word;
-`;
-const DiaryButtonBox = styled.div`
-    display: flex;
-
-    & > div {
-        margin-right: 5px;
-        font-size: 0.85rem;
-    }
 `;
 
 export default DiaryViewer;
